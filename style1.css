@@ -16,8 +16,8 @@ html, body{
     width: 100%;
 }
 #homePage{
-    height: 90%;
-    width: 95%;
+    height: 53vw;
+    width: 85vw;
     /* display: flex; */
     align-items: center;
     position: absolute;
@@ -41,13 +41,13 @@ html, body{
 #divOneTitle{
     height: 15%;
     width: 100%;
-    background-color: gold;
+    /* background-color: gold; */
 }
 #div-img-title{
     height: 100%;
     width: 14%;
     
-    background-color: green;
+    /* background-color: green; */
 }
 #div-img-title img{
     height: 100%;
@@ -76,10 +76,28 @@ html, body{
 #login{
     height: 70%;
     width: 100%;
-    background-color: green;
+    display: flex;
+
+    /* background-color: rgb(14, 255, 14); */
 
 
     /* background-color: yellow; */
+}#important-lines{
+    height: 95%;
+    width: 50%;
+    margin-top: 4px;
+    border-top-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+    background-color: brown;
+}
+#div-for-login{
+    height: 100%;
+    width: 50%;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    /* background-color: purple; */
 }
 #candidate-login {
     height: 8%;
@@ -94,8 +112,8 @@ html, body{
     justify-content: center;
 }
 #container{
-    height: 70%;
-    width: 27%;
+    height: 90%;
+    width: 65%;
     display: block;
     color: rgb(0, 0, 0);
     border:  2px solid white;
@@ -148,6 +166,7 @@ input{
     padding: 2px;
     border-color: rgba(0, 0, 0, 0.348);
 }
+
 /*#pass label{
     position: absolute;
     top: 30%;
@@ -221,8 +240,8 @@ button{
 
 /* ****************************Resgistration Form********************************** */
 #registrationForm{
-    height: 100%;
-    width: 50%;
+    height: 55vw;
+    width: 50vw;
     display: none;
     /* margin-left: 8%; */
     color: rgb(0, 0, 0);
