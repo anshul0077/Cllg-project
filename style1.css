@@ -16,7 +16,7 @@ html, body{
     width: 100%;
 }
 #homePage{
-    height: 53vw;
+    height: 99vh;
     width: 85vw;
     /* display: flex; */
     /* border: 2px solid black; */
@@ -243,7 +243,7 @@ button{
 
 /* ****************************Resgistration Form********************************** */
 #registrationForm{
-    height: 55vw;
+    height: 99vh;
     width: 50vw;
     display: none;
     /* margin-left: 8%; */
