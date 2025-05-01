@@ -7,7 +7,7 @@
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
-
+<script type="module" src="./register.js" defer></script>
     <title>votting.in</title>
     
 </head>
@@ -54,7 +54,7 @@
        </div>
        
        <div id="user-login">
-        <form action="">
+        <form id="login-Form" action="">
            <div class="id-pass">
                <label for="username" >username (Registration Number) <span style="color: red;">*</span></label>
                <input type="text" required id="login-id" placeholder="Registration Number">
@@ -67,7 +67,7 @@
                <a href="">Forgot Password</a>
            </div>
            <div id="button">
-               <button> Login</button>
+               <button id="login-btn"> Login</button>
            </div>
            <div id="register">
                <p>New User ?</p> <br>  <h4 id="click1" >Register Now</h4>
@@ -112,34 +112,38 @@
              <p>One Time Registration</p>
         </div>
         <div id="full-information">
-            <form>
+            <form id="reg-Form">
             <div id="personal-details">
                 <p>One Time Registration</p>
                 <h3>Personal Details</h3>
             </div>
             <div id="name" class="detail">
                 <label for="">1. First Name<span style="color: red;">*</span></label>
-                <input required type="text">
+                <input id="rName" required type="text">
             </div>
             <div class="detail">
                 <label for="">2. Last Name<span style="color: red;">*</span></label>
-                <input required type="text">
+                <input id="rLastname" required type="text">
             </div>
             <div class="detail">
                 <label for="">3. Phone No.<span style="color: red;">*</span></label>
-                <input required  type="number">
+                <input id="rNumber" required  type="number">
             </div>
             <div class="detail">
                 <label for="">4. E-mail<span style="color: red;">*</span></label>
-                <input required type="email">
+                <input id="rEmail" required type="email">
             </div>
             <div class="detail">
-                <label for="D.O.B">5. Date of Birth (DD-MM-YYYY)<span style="color: red;">*</span></label>
-                <input required type="date">
+                <label for="">5. Password<span style="color: red;">*</span></label>
+                <input id="rPassword" required type="password">
+            </div>
+            <div class="detail">
+                <label for="D.O.B">6. Date of Birth (DD-MM-YYYY)<span style="color: red;">*</span></label>
+                <input id="rDate" required type="date">
             </div>
             <div id="gender" class="detail">
-                <label for="gender">6. Gender<span style="color: red;">*</span></label>
-                <select required name="gender" id="">
+                <label for="gender">7. Gender<span style="color: red;">*</span></label>
+                <select required name="gender" id="rGender">
                     <option value="" disabled selected>select</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -148,8 +152,8 @@
                 
             </div>
             <div id="id" class="detail">
-                <label for="identi-card">6. Type of Identification Card<span style="color: red;">*</span></label>
-                <select required name="Select" id="" >
+                <label for="identi-card">8. Type of Identification Card<span style="color: red;">*</span></label>
+                <select required name="Select" id="rCard" >
                     <!-- <optgroup label="hlo"></optgroup> -->
                     <option value=" " disabled selected>Select</option>
                     <option value="Pan Card" >Pan Card</option>
@@ -157,7 +161,7 @@
                 </select>
                 <p>Type if ID and Id Number to be provided.</p>
                 <label for="">a. Identification Card Number<span style="color: red;">*</span></label>
-                <input required type="text">
+                <input required id="rcard-dets" type="text">
             </div>
             <div  id="note" class="detail">
                 <p>Note: Please check your personal details before submit.</p>
