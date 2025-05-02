@@ -1,99 +1,116 @@
 
 
-  
+  // Import the functions you need from the SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
- // Import the functions you need from the SDKs you need
- import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
- import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
- import{getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
- 
- const firebaseConfig = {
- //YOUR COPIED FIREBASE PART SHOULD BE HERE
- //WATCH THIS VIDEO TO LEARN WHAT TO PUT HERE   https://youtu.be/_Xczf06n6x0
-
- apiKey: "AIzaSyClGUQ19AyxGa44qHWZMsqrUPtl7_CCTWQ",
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyClGUQ19AyxGa44qHWZMsqrUPtl7_CCTWQ",
     authDomain: "voting-app-e8e20.firebaseapp.com",
     projectId: "voting-app-e8e20",
-    storageBucket: "voting-app-e8e20.firebasestorage.app",
+    storageBucket: "voting-app-e8e20.appspot.com", // ✅ fixed typo
     messagingSenderId: "326282693756",
     appId: "1:326282693756:web:62d101d8543726d11fcdf9"
+  };
 
- };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 
- // Initialize Firebase
- const app = initializeApp(firebaseConfig);
+  // Function to show user messages
+  function showMessage(message, divId) {
+    const messageDiv = document.getElementById(divId);
+    messageDiv.style.display = "block";
+    messageDiv.innerHTML = message;
+    messageDiv.style.opacity = 1;
+    setTimeout(() => {
+      messageDiv.style.opacity = 0;
+      messageDiv.style.display = "none"; // ✅ hide message after fade
+    }, 5000);
+  }
 
- function showMessage(message, divId){
-    var messageDiv=document.getElementById(divId);
-    messageDiv.style.display="block";
-    messageDiv.innerHTML=message;
-    messageDiv.style.opacity=1;
-    setTimeout(function(){
-        messageDiv.style.opacity=0;
-    },5000);
- }
- const signUp=document.getElementById('submitSignUp');
- signUp.addEventListener('click', (event)=>{
+  // SIGN UP FUNCTIONALITY
+  const signUp = document.getElementById('rgsubmit');
+  signUp.addEventListener('click', (event) => {
     event.preventDefault();
-    const email=document.getElementById('rEmail').value;
-    const password=document.getElementById('rPassword').value;
-    const firstName=document.getElementById('fName').value;
-    const lastName=document.getElementById('lName').value;
 
-    const auth=getAuth();
-    const db=getFirestore();
+    const email = document.getElementById('rEmail').value;
+    const password = document.getElementById('rPassword').value;
+    const firstName = document.getElementById('rName').value;
+    const lastName = document.getElementById('rLastname').value;
+    const number = document.getElementById('rNumber').value;
+    const Gender = document.getElementById('rGender').value;
+    const DOB = document.getElementById('rDate').value;
+    const card = document.getElementById('rCard').value;
+    const cardDets = document.getElementById('rcard-dets').value;
+
+    const auth = getAuth();
+    const db = getFirestore();
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential)=>{
-        const user=userCredential.user;
-        const userData={
-            email: email,
-            firstName: firstName,
-            lastName:lastName
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userData = {
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          number: number,
+          Gender: Gender,
+          DOB: DOB,
+          card: card,
+          cardDets: cardDets
         };
+
         showMessage('Account Created Successfully', 'signUpMessage');
-        const docRef=doc(db, "users", user.uid);
-        setDoc(docRef,userData)
-        .then(()=>{
-            window.location.href='index.html';
-        })
-        .catch((error)=>{
-            console.error("error writing document", error);
 
-        });
-    })
-    .catch((error)=>{
-        const errorCode=error.code;
-        if(errorCode=='auth/email-already-in-use'){
-            showMessage('Email Address Already Exists !!!', 'signUpMessage');
+        const docRef = doc(db, "users", user.uid);
+        setDoc(docRef, userData)
+          .then(() => {
+            setTimeout(() => {
+              window.location.href = 'index.html'; // ✅ wait before redirect
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("Error writing document", error);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === 'auth/email-already-in-use') {
+          showMessage('Email Address Already Exists !!!', 'signUpMessage');
+        } else {
+          showMessage('Unable to create user', 'signUpMessage');
         }
-        else{
-            showMessage('unable to create User', 'signUpMessage');
-        }
-    })
- });
+      });
+  });
 
- const signIn=document.getElementById('submitSignIn');
- signIn.addEventListener('click', (event)=>{
+  // SIGN IN FUNCTIONALITY
+  const signIn = document.getElementById('login-btn');
+  signIn.addEventListener('click', (event) => {
     event.preventDefault();
-    const email=document.getElementById('email').value;
-    const password=document.getElementById('password').value;
-    const auth=getAuth();
 
-    signInWithEmailAndPassword(auth, email,password)
-    .then((userCredential)=>{
-        showMessage('login is successful', 'signInMessage');
-        const user=userCredential.user;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        showMessage('Login is successful', 'signInMessage');
+        const user = userCredential.user;
         localStorage.setItem('loggedInUserId', user.uid);
-        window.location.href='homepage.html';
-    })
-    .catch((error)=>{
-        const errorCode=error.code;
-        if(errorCode==='auth/invalid-credential'){
-            showMessage('Incorrect Email or Password', 'signInMessage');
+
+        setTimeout(() => {
+          window.location.href = 'index.html'; // ✅ delayed redirect
+        }, 2000);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === 'auth/invalid-credential') {
+          showMessage('Incorrect Email or Password', 'signInMessage');
+        } else {
+          showMessage('Account does not exist', 'signInMessage');
         }
-        else{
-            showMessage('Account does not Exist', 'signInMessage');
-        }
-    })
- })
+      });
+  });
+
