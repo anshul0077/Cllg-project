@@ -12,7 +12,7 @@ html, body{
     /* background-color: red; */
 }
 #backgroundImage{
-    height: 110%;
+    height: 100%;
     width: 100%;
 }
 #homePage{
@@ -24,9 +24,10 @@ html, body{
     align-items: center;
     position: absolute;
     top: 50%;
+    
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.207);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 #first{
     height: 5%;
@@ -167,7 +168,7 @@ html, body{
 #user-login #login-id[type="text"]{
 padding: 10px 40px;
 }
-#user-login #password[type="password"]{
+#user-login #login-password[type="password"]{
     padding: 10px 40px;
     }
 input{
@@ -197,7 +198,7 @@ a{
     align-items: center;
     /* background-color: green; */
 }
-button{
+#login-btn{
     height: 90%;
     width: 90%;
     margin-right: 5%;

@@ -7,7 +7,7 @@ registerBtn.addEventListener("click", function(){
     showForm.style.display = "block"
     // registerBtn.style.color = "red"
     container.style.display = "none"
-homePage.style.filter="blur(10px)"
+homePage.style.filter="blur(120px)"
 
 })
 let backbtn = document.getElementById("back")
